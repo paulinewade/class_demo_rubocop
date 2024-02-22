@@ -72,6 +72,8 @@ jobs:
         RAILS_ENV: test
       run: |
         bundler exec rspec
+        gem install rubocop
+        rubocop
 #        npx update-browserslist-db@latest
 #        bundle exec rake webpacker:compile
 
@@ -81,11 +83,9 @@ jobs:
     name: Rubocop
     runs-on: ubuntu-latest
     steps:
-#      - uses: actions/checkout@v1
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
-          #ruby-version: ${{ env.RUBY_VERSION }}
           ruby-version: 3.1.2
           bundler-cache: true
       - name: Install Rubocop & Check code
